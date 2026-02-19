@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Appointment Rebooking Feature
+
+A Next.js application implementing an appointment rebooking feature for patients, built as a technical assessment.
+
+## Live Demo
+
+Run locally following the instructions below.
+
+## Features
+
+- View all patient appointments separated by upcoming and past
+- Rebook appointments scheduled more than 24 hours in the future
+- Specialty-locked rebooking: patients can only rebook within the same medical specialty
+- Automatic list refresh after rebooking using RTK Query cache invalidation
+- Fully typed with TypeScript
+
+## Tech Stack
+
+- **Next.js 15** — React framework with App Router and built-in API routes
+- **Redux Toolkit + RTK Query** — state management and data fetching with automatic cache invalidation
+- **TypeScript** — static typing throughout the project
+- **Tailwind CSS** — utility-first styling
+
+## Architecture Decisions
+
+### RTK Query for data fetching
+RTK Query was used to manage all API calls. The `getAppointments` query uses `providesTags: ["Appointments"]`, and the `rebookAppointment` mutation uses `invalidatesTags: ["Appointments"]`. This means that after a successful rebooking, the appointments list is automatically refetched without any manual intervention.
+
+### API Routes as backend
+Next.js API Routes (`/api/appointments`, `/api/appointments/rebook`, `/api/slots`) simulate a real backend. All business logic validations are handled server-side, including the 24-hour rebooking restriction and specialty matching.
+
+### Business rules enforced on both sides
+- The `AppointmentCard` component hides the rebook button client-side for appointments within 24 hours
+- The `/api/appointments/rebook` endpoint validates the same rule server-side, preventing any bypass attempts
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+
+- npm
+
+### Installation
 ```bash
+git clone https://github.com/yasminsuellen/appointment-rebooking.git
+cd appointment-rebooking
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── appointments/
+│   │   │   ├── route.ts          # GET /api/appointments
+│   │   │   └── rebook/
+│   │   │       └── route.ts      # POST /api/appointments/rebook
+│   │   └── slots/
+│   │       └── route.ts          # GET /api/slots
+│   ├── appointments/
+│   │   └── page.tsx              # My Appointments page
+│   └── page.tsx                  # Home page
+├── components/
+│   ├── AppointmentCard.tsx       # Single appointment card with rebook button
+│   ├── AppointmentList.tsx       # Full appointments list with sections
+│   └── RebookModal.tsx           # Rebooking flow modal
+├── store/
+│   ├── Provider.tsx              # Redux provider wrapper
+│   ├── store.ts                  # Redux store configuration
+│   └── services/
+│       └── appointmentsApi.ts    # RTK Query API slice
+└── lib/
+    └── mockData.ts               # Mock data and TypeScript interfaces
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Rebooking Flow
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Patient views their appointments list
+2. Appointments scheduled more than 24 hours ahead show a **Rebook** button
+3. Clicking **Rebook** opens a modal filtered to the same specialty
+4. Patient selects a new available time slot
+5. On confirmation, a POST request is sent via RTK Query mutation
+6. The mutation invalidates the `Appointments` tag, triggering an automatic refetch
+7. The list updates instantly with the new appointment data
