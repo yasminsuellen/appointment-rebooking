@@ -1,19 +1,18 @@
 import { NextResponse } from "next/server";
-import { mockAppointments, mockTimeSlots } from "@/lib/mockData";
-
-const appointments = [...mockAppointments];
+import { mockTimeSlots } from "@/lib/mockData";
+import { appointmentsStore } from "@/lib/store";
 
 export async function POST(request: Request) {
   const body = await request.json();
   const { appointmentId, slotId } = body;
 
-  const appointmentIndex = appointments.findIndex((apt) => apt.id === appointmentId);
+  const appointmentIndex = appointmentsStore.findIndex((apt) => apt.id === appointmentId);
 
   if (appointmentIndex === -1) {
     return NextResponse.json({ error: "Appointment not found" }, { status: 404 });
   }
 
-  const appointment = appointments[appointmentIndex];
+  const appointment = appointmentsStore[appointmentIndex];
 
   const hoursDiff = (new Date(appointment.scheduledAt).getTime() - Date.now()) / (1000 * 60 * 60);
 
@@ -37,7 +36,7 @@ export async function POST(request: Request) {
     );
   }
 
-  appointments[appointmentIndex] = {
+  appointmentsStore[appointmentIndex] = {
     ...appointment,
     doctorName: slot.doctorName,
     type: slot.type,
@@ -45,5 +44,5 @@ export async function POST(request: Request) {
     price: slot.price,
   };
 
-  return NextResponse.json(appointments[appointmentIndex]);
+  return NextResponse.json(appointmentsStore[appointmentIndex]);
 }
