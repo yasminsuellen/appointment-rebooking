@@ -2,6 +2,8 @@
 
 A Next.js application implementing an appointment rebooking feature for patients, built as a technical assessment.
 
+![test](https://github.com/user-attachments/assets/0c9e150e-105d-4d97-a6f6-5710d33a25be)
+
 ## Live Demo
 
 Run locally following the instructions below.
