@@ -96,3 +96,7 @@ src/
 5. On confirmation, a POST request is sent via RTK Query mutation
 6. The mutation invalidates the `Appointments` tag, triggering an automatic refetch
 7. The list updates instantly with the new appointment data
+
+---
+
+**Yasmin Suellen** [GitHub](https://github.com/yasminsuellen) · [LinkedIn](https://www.linkedin.com/in/yasminsuellen/)
