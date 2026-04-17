@@ -1,6 +1,5 @@
 # Appointment Rebooking Feature
-
-A Next.js application implementing an appointment rebooking feature for patients, built as a technical assessment.
+A Next.js application implementing an appointment rebooking feature for patients, built as a technical assessment. **[Click here to live demo.](appointment-rebooking.vercel.app)**
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/f3a5904c-d4f0-4af1-872b-02c23ce52429" alt="Appointment Rebooking Demo" width="100%"/>
