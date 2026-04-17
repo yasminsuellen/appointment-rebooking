@@ -6,7 +6,7 @@ import ReduxProvider from "@/store/Provider";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LuxMedi",
+  title: "GlobalDoctors",
   description: "Online medical care when you need it",
 };
 
