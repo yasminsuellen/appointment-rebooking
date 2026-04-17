@@ -1,6 +1,13 @@
 # Appointment Rebooking Feature
 A Next.js application implementing an appointment rebooking feature for patients, built as a technical assessment. **[Click here to live demo.](appointment-rebooking.vercel.app)**
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.11-764ABC?style=flat-square&logo=redux&logoColor=white)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel)](SUA_URL_VERCEL_AQUI)
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/f3a5904c-d4f0-4af1-872b-02c23ce52429" alt="Appointment Rebooking Demo" width="100%"/>
 </div>
