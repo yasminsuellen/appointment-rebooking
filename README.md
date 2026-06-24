@@ -9,7 +9,7 @@ A Next.js application implementing an appointment rebooking feature for patients
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel)](SUA_URL_VERCEL_AQUI)
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/f3a5904c-d4f0-4af1-872b-02c23ce52429" alt="Appointment Rebooking Demo" width="100%"/>
+  <img src="https://github.com/user-attachments/assets/5e926fdc-0b8b-4be2-a19c-0b158e9a41ed" alt="Appointment Rebooking Demo" width="100%"/>
 </div>
 
 ## Live Demo
