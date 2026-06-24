@@ -72,8 +72,8 @@ src/
 │   │   └── slots/
 │   │       └── route.ts          # GET /api/slots
 │   ├── appointments/
-│   │   └── page.tsx              # My Appointments page
-│   └── page.tsx                  # Home page
+│   │   └── page.tsx              # Appointments page (legacy route)
+│   └── page.tsx                  # My Appointments page (root route)
 ├── components/
 │   ├── AppointmentCard.tsx       # Single appointment card with rebook button
 │   ├── AppointmentList.tsx       # Full appointments list with sections
